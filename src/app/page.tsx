@@ -14,7 +14,7 @@ const App: React.FC = () => {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>AI Avatar Video Generator</title>
+        <title>Campaign theme: Zero Knowledge. Let's create an engaging Avatar video of it.</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
         <style>{`
@@ -43,7 +43,8 @@ const App: React.FC = () => {
             </ul>
           </div>
           <div className="w-3/4 flex flex-col items-center">
-            <h1 className="text-6xl font-bold mb-8">AI Avatar Video Generator</h1>
+            <h1 className="text-6xl font-bold mb-8">Campaign theme: "Zero Knowledge"</h1>
+            <h3 className="text-2xl mb-8">Let's create an engaging Avatar video of it</h3>
               <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={handleStartClick}>
                 Start
               </button>

@@ -3,16 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { BackendAPI } from '../utils/backend';
 import { useRouter } from 'next/navigation';
 
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
-};
 
 const Step4: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [generateAudio, setGenerateAudio] = useState<boolean>(false);
   const [finishGenerate, setFinishGenerate] = useState<boolean>(false);
   const [saveAudioFile, setSaveAudioFile] = useState<string | null>(null);
-  const [content, setContent] = useState('輸入你想讓AI Avatar 講的話');
+  const [content, setContent] = useState('Enter your script here');
   const [gender, setGender] = useState<string>('1');
   const router = useRouter();
 
@@ -78,7 +75,7 @@ const Step4: React.FC = () => {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   placeholder="Enter content"
-                  className="bg-gray-800 text-white px-4 py-2 rounded-md mb-4 h-24 resize-none"
+                  className="bg-gray-800 text-white px-8 py-6 rounded-md mb-4 h-40 w-full"
                 />
                 <button
                   className="bg-blue-600 text-white font-semibold py-2 px-6 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -87,41 +84,46 @@ const Step4: React.FC = () => {
                   Enter your script
                 </button>
               </div>
-            ) : (
-              <div className="mt-4">
-                <label className="text-white mr-4">Male</label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="2"
-                  checked={gender === '2'}
-                  onChange={() => setGender('2')}
-                />
-                <label className="text-white ml-4">Female</label>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="1"
-                  checked={gender === '1'}
-                  onChange={() => setGender('1')}
-                />
-                <button
-                  className="bg-blue-600 text-white font-semibold py-2 px-6 rounded mt-2 ml-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                  onClick={handleStartGenerating}
-                >
-                  Generate Audio
-                </button>
-              </div>
+            ) : !finishGenerate && !loading &&(
+              <>
+                <div className="mt-4">
+                  <label className="text-white mr-4">Male</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="2"
+                    checked={gender === '2'}
+                    onChange={() => setGender('2')}
+                  />
+                  <label className="text-white ml-4">Female</label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="1"
+                    checked={gender === '1'}
+                    onChange={() => setGender('1')}
+                  />
+                  <button
+                    className="bg-blue-600 text-white font-semibold py-2 px-6 rounded mt-2 ml-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                    onClick={handleStartGenerating}
+                  >
+                    Generate Audio
+                  </button>
+                </div>
+                {loading && (
+                  <div className="animate-spin h-5 w-5 border-t-2 border-b-2 border-blue-500 mx-auto my-4"></div>
+                )}
+              </>
             )}
-            {loading ? (
-              <div className="animate-spin h-5 w-5 border-t-2 border-b-2 border-blue-500 mx-auto my-4"></div>
-            ) : finishGenerate && !loading ?(
+            {finishGenerate && !loading && (
               <div>
-                {!!saveAudioFile && <audio controls>
-                  <source src={saveAudioFile} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>}
-                <p className="text-gray-400 mb-8">Finish generated</p>
+                {!!saveAudioFile && (
+                  <audio controls>
+                    <source src={saveAudioFile} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                )}
+                <p className="text-gray-400 mt-8 mb-6">Finish generated</p>
                 <button
                   className="bg-blue-600 text-white font-semibold py-2 px-6 rounded mt-2 ml-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                   onClick={handleSaveAndNextClick}
@@ -129,8 +131,6 @@ const Step4: React.FC = () => {
                   Next
                 </button>
               </div>
-            ) : (
-              <div></div>
             )}
           </div>
         </div>

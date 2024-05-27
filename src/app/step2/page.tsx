@@ -121,7 +121,7 @@ const Step2: React.FC = () => {
                             src={URL.createObjectURL(selectedFile)}
                             alt="Selected"
                             className="rounded-lg"
-                            style={{ maxWidth: '100%', maxHeight: '200px' }}
+                            style={{ maxWidth: '100%', maxHeight: '300px' }}
                           />
                           <br />
                           <label htmlFor="user-input" className="text-white mt-4 mb-2">
