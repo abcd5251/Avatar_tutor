@@ -115,6 +115,9 @@ const Step4: React.FC = () => {
                 )}
               </>
             )}
+            {loading && (
+              <div className="animate-spin h-5 w-5 border-t-2 border-b-2 border-blue-500 mx-auto my-4"></div>
+            )}
             {finishGenerate && !loading && (
               <div>
                 {!!saveAudioFile && (

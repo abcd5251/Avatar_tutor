@@ -55,14 +55,14 @@ return (
             </div>
             <div className="w-3/4 flex flex-col items-center">
               <h1 className="text-6xl font-bold mb-8">Here is your AI avatar video</h1>
-              {!!videoUrl && <video controls src={videoUrl} className="mb-4" />}
+              {!!videoUrl && <video controls src={videoUrl} className="mb-4" width="480" height="360"/>}
               {!loading && finishGenerate ? (
                 <div className="flex justify-center gap-4">
                   <button
                     className="bg-blue-600 text-white font-semibold py-2 px-6 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     onClick={handleSaveClick}
                   >
-                    Save 
+                    Upload to Twitter
                   </button>
                   <button
                     className="bg-blue-600 text-white font-semibold py-2 px-6 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
