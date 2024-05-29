@@ -1,9 +1,10 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { BackendAPI, uploadToIPFS } from '../utils/backend';
-import { WalletProvider } from "@suiet/wallet-kit";
-import { ConnectButton } from '@suiet/wallet-kit';
+import { useWallet } from '@suiet/wallet-kit';
+import { TransactionBlock } from "@mysten/sui.js/transactions";
+import { WalletProvider, ConnectButton } from "@suiet/wallet-kit";
 import "@suiet/wallet-kit/style.css";
 
 const sleep = (milliseconds: number): Promise<void> => {
@@ -12,7 +13,15 @@ const sleep = (milliseconds: number): Promise<void> => {
 
 
 
-const Step5: React.FC = () => {
+function Page() {
+    const wallet = useWallet();
+
+    useEffect(() => {
+      if (!wallet.connected) return;
+      console.log('connected wallet name: ', wallet.name)
+      console.log('account address: ', wallet.account?.address)
+      console.log('account publicKey: ', wallet.account?.publicKey)
+    }, [wallet.connected])
 
     const router = useRouter();
     const [loading, setLoading] = useState<boolean>(false);
@@ -20,7 +29,6 @@ const Step5: React.FC = () => {
     const [finishGenerate, setFinishGenerated] = useState<boolean>(false);
     const [twitterAccount, setTwitterAccount] = useState<string>("");
     const [showMintButton, setShowMintButton] = useState<boolean>(false);
-    const { signAndExecuteTransactionBlock } = useWalletKit();
     
     const handleTwitterAccountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const account = event.target.value;
@@ -35,10 +43,7 @@ const Step5: React.FC = () => {
     const handleSaveClick = () => {
       
     };
-    
     const sendTransaction = async () => {
-        
-
         let url_nft = "";
         try {
           const respond = await uploadToIPFS('test');
@@ -46,12 +51,13 @@ const Step5: React.FC = () => {
         } catch (error) {
           console.error('Error：', error);
         }
-        console.log("Result", url_nft)
-        console.log("start send transaction")
+        console.log("Result", url_nft);
+        console.log("start send transaction");
+        
         const tx = new TransactionBlock();
-        const NFT_address = "0xb56e1e0d840dadb7e7f45d6f8e638ac6bc9f9dfc2e0bc2d4171cfcdd72eadd00";
+        const packageObjectId = "0xb56e1e0d840dadb7e7f45d6f8e638ac6bc9f9dfc2e0bc2d4171cfcdd72eadd00";
         tx.moveCall({
-          target: `${NFT_address}::avatar::mint`,
+          target: `${packageObjectId}::avatar::mint`,
           arguments: [
             tx.pure.string('testing'),
             tx.pure.string('testing 2'),
@@ -60,9 +66,11 @@ const Step5: React.FC = () => {
             ),
           ],
         });
-        const result = await signAndExecuteTransactionBlock({ transactionBlock: tx });
-        console.log(result)
-      };
+        const result = await wallet.signAndExecuteTransactionBlock({
+          transactionBlock: tx,
+        });
+        console.log("Sign result", result);
+    }
 
     const handleStartGenerated = async () => {
       setLoading(true);
@@ -167,5 +175,10 @@ return (
     );
   };
   
-export default Step5;
-  
+export default function App() {
+    return (
+      <WalletProvider>
+        <Page/>
+      </WalletProvider>
+    );
+  }
