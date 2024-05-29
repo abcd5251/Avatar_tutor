@@ -1,23 +1,10 @@
 "use client"
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { formatAddress } from '@mysten/sui.js/utils';
-import { ConnectButton, useWalletKit } from '@mysten/wallet-kit';
-import { WalletKitProvider } from '@mysten/wallet-kit';
+import { WalletProvider } from "@suiet/wallet-kit";
+import {ConnectButton} from '@suiet/wallet-kit';
+import "@suiet/wallet-kit/style.css";
 
-function ConnectToWallet() {
-    const { currentAccount } = useWalletKit();
-    console.log(currentAccount);
-
-    // Check if currentAccount exists before accessing its properties
-    const connectedText = currentAccount ? `Connected: ${formatAddress(currentAccount.address)}` : 'Connect Wallet';
-    return (
-        <ConnectButton
-            connectText={'Connect Wallet'}
-            connectedText={connectedText}
-        />
-    );
-}
 
 const App: React.FC = () => {
     const router = useRouter();
@@ -27,7 +14,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <WalletKitProvider>
+        <WalletProvider>
             <html lang="en">
                 <head>
                     <meta charSet="UTF-8" />
@@ -56,7 +43,7 @@ const App: React.FC = () => {
                         <div className="w-1/4">
                             <ul className="space-y-2">
                                 <div>
-                                    <ConnectToWallet />
+                                    <ConnectButton/>
                                 </div>
                                 <img src="/logo.png" alt="Logo" className="logo" />
                                 <li className="bg-blue-500 text-white px-4 py-2 rounded-md">Step 1: Start</li>
@@ -72,13 +59,13 @@ const App: React.FC = () => {
                                 Start
                             </button>
                             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-8 mt-8" onClick={handleStartClick}>
-                                Start
+                               Check Req
                             </button>
                         </div>
                     </div>
                 </body>
             </html>
-        </WalletKitProvider>
+        </WalletProvider>
     );
 };
 

@@ -2,23 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { BackendAPI } from '../utils/backend';
 import { useRouter } from 'next/navigation';
-import { formatAddress } from '@mysten/sui.js/utils';
-import { ConnectButton, useWalletKit } from '@mysten/wallet-kit';
-import { WalletKitProvider } from '@mysten/wallet-kit';
-
-function ConnectToWallet() {
-    const { currentAccount } = useWalletKit();
-    console.log(currentAccount);
-
-    // Check if currentAccount exists before accessing its properties
-    const connectedText = currentAccount ? `Connected: ${formatAddress(currentAccount.address)}` : 'Connect Wallet';
-    return (
-        <ConnectButton
-            connectText={'Connect Wallet'}
-            connectedText={connectedText}
-        />
-    );
-}
+import { WalletProvider } from "@suiet/wallet-kit";
+import { ConnectButton } from '@suiet/wallet-kit';
+import "@suiet/wallet-kit/style.css";
 
 const Step4: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -52,7 +38,7 @@ const Step4: React.FC = () => {
   };
 
   return (
-    <WalletKitProvider>
+    <WalletProvider>
       <html lang="en">
         <head>
           <meta charSet="UTF-8" />
@@ -77,7 +63,7 @@ const Step4: React.FC = () => {
             <div className="w-1/4">
               <ul className="space-y-2">
                 <div>
-                  <ConnectToWallet />
+                  <ConnectButton />
                 </div>
                 <img src="/logo.png" alt="Logo" className="logo" />
                 <li>Step 1: Start</li>
@@ -159,7 +145,7 @@ const Step4: React.FC = () => {
           </div>
         </body>
       </html>
-    </WalletKitProvider>
+    </WalletProvider>
   );
 };
 

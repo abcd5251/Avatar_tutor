@@ -11,9 +11,6 @@ dependencies:
   '@mysten/sui.js':
     specifier: ^0.54.1
     version: 0.54.1(svelte@4.2.17)(typescript@5.4.5)
-  '@mysten/wallet-kit':
-    specifier: ^0.8.6
-    version: 0.8.6(react-dom@18.3.1)(react@18.3.1)
   '@suiet/wallet-kit':
     specifier: ^0.2.24
     version: 0.2.24(@mysten/sui.js@0.54.1)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(svelte@4.2.17)(typescript@5.4.5)
@@ -1491,19 +1488,6 @@ packages:
       graphql: 16.8.1
     dev: false
 
-  /@headlessui/react@1.7.19(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-Ll+8q3OlMJfJbAKM/+/Y2q6PPYbryqNTXDbryx7SXLIDamkF6iQFbriYHga0dY44PvDhvvBWCx1Xj4U5+G4hOw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: ^16 || ^17 || ^18
-      react-dom: ^16 || ^17 || ^18
-    dependencies:
-      '@tanstack/react-virtual': 3.5.0(react-dom@18.3.1)(react@18.3.1)
-      client-only: 0.0.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    dev: false
-
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -1567,12 +1551,6 @@ packages:
       bs58: 5.0.0
     dev: false
 
-  /@mysten/bcs@0.9.0:
-    resolution: {integrity: sha512-h56essa8oSS4/J0Dby8k8stMoOSt+QZIEIeZNtgTOWh9HeV69yFg2BUg/+Rk7jzfWzvUmw9lFyKNipXcD5QOTw==}
-    dependencies:
-      bs58: 5.0.0
-    dev: false
-
   /@mysten/dapp-kit@0.13.2(@tanstack/react-query@5.40.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(svelte@4.2.17)(typescript@5.4.5):
     resolution: {integrity: sha512-YO4DTKwF0CiUjiB4As3tnHHbD30/9ZNIe1nXScXCl8KJEe0A0uuoLlTP9y6xVn84VftJGek7WmsIeuEq6wFZ0w==}
     peerDependencies:
@@ -1600,20 +1578,6 @@ packages:
       - react-dom
       - svelte
       - typescript
-    dev: false
-
-  /@mysten/sui.js@0.48.0:
-    resolution: {integrity: sha512-kGeV5F3IYThiliVbIou3YOOGAr8TdNyub4hGY2gevnphFQF8SukwQk8cyzuEEsAVSDUt0rsA9xxpncSgX+RjMA==}
-    engines: {node: '>=16'}
-    dependencies:
-      '@mysten/bcs': 0.9.0
-      '@noble/curves': 1.4.0
-      '@noble/hashes': 1.4.0
-      '@scure/bip32': 1.4.0
-      '@scure/bip39': 1.3.0
-      '@suchipi/femver': 1.0.0
-      superstruct: 1.0.4
-      tweetnacl: 1.0.3
     dev: false
 
   /@mysten/sui.js@0.51.2(svelte@4.2.17)(typescript@5.4.5):
@@ -1658,30 +1622,6 @@ packages:
       - typescript
     dev: false
 
-  /@mysten/wallet-kit-core@0.6.14:
-    resolution: {integrity: sha512-Q1JWoWnFDDXU5ugVgCqcmgW26aEvvnlsRtO7RY6K86u6yiDVTSovLyHbJs38fxb0xuW8HApQPck/VZoK659HfA==}
-    deprecated: Wallet Kit has been replaced by @mysten/dapp-kit, and is no longer maintained
-    dependencies:
-      '@mysten/sui.js': 0.48.0
-      '@mysten/wallet-standard': 0.8.11
-    dev: false
-
-  /@mysten/wallet-kit@0.8.6(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-RT6F+TjnBAXK5tRF0DY/mXfVK8wlezQteqzSJGCLGhHWZcbVXc61zFaUrFWP5FdCy6HCGugMlZd/sOiOx6u+hA==}
-    deprecated: Wallet Kit has been replaced by @mysten/dapp-kit, and is no longer maintained
-    peerDependencies:
-      react: '*'
-      react-dom: '*'
-    dependencies:
-      '@headlessui/react': 1.7.19(react-dom@18.3.1)(react@18.3.1)
-      '@mysten/sui.js': 0.48.0
-      '@mysten/wallet-kit-core': 0.6.14
-      '@mysten/wallet-standard': 0.8.11
-      '@stitches/react': 1.2.8(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    dev: false
-
   /@mysten/wallet-standard@0.11.2(svelte@4.2.17)(typescript@5.4.5):
     resolution: {integrity: sha512-wDuXHwmdYS+9ewH6w4Fg67QwDpYN6JTKPWC/fuEWRuHy4uS77DfrIG6KHtU0tReMGapevXovKpw6WoSHJHDDHg==}
     dependencies:
@@ -1700,13 +1640,6 @@ packages:
     transitivePeerDependencies:
       - svelte
       - typescript
-    dev: false
-
-  /@mysten/wallet-standard@0.8.11:
-    resolution: {integrity: sha512-kkD/8vBzI0wMyeN/2QRVESINeufIJnJLE0jUT2Bl2eRSJDYhIIpVppVGPaVjYP+qMThZMk6WEgUVMLs9dVjJ2Q==}
-    dependencies:
-      '@mysten/sui.js': 0.48.0
-      '@wallet-standard/core': 1.0.3
     dev: false
 
   /@mysten/zksend@0.8.2(svelte@4.2.17)(typescript@5.4.5):
@@ -2384,14 +2317,6 @@ packages:
       '@scure/base': 1.1.6
     dev: false
 
-  /@stitches/react@1.2.8(react@18.3.1):
-    resolution: {integrity: sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==}
-    peerDependencies:
-      react: '>= 16.3.0'
-    dependencies:
-      react: 18.3.1
-    dev: false
-
   /@suchipi/femver@1.0.0:
     resolution: {integrity: sha512-bprE8+K5V+DPX7q2e2K57ImqNBdfGHDIWaGI5xHxZoxbKOuQZn4wzPiUxOAHnsUr3w3xHrWXwN7gnG/iIuEMIg==}
     dev: false
@@ -2617,21 +2542,6 @@ packages:
     dependencies:
       '@tanstack/query-core': 5.40.0
       react: 18.3.1
-    dev: false
-
-  /@tanstack/react-virtual@3.5.0(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-rtvo7KwuIvqK9zb0VZ5IL7fiJAEnG+0EiFZz8FUOs+2mhGqdGmjKIaT1XU7Zq0eFqL0jonLlhbayJI/J2SA/Bw==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@tanstack/virtual-core': 3.5.0
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    dev: false
-
-  /@tanstack/virtual-core@3.5.0:
-    resolution: {integrity: sha512-KnPRCkQTyqhanNC0K63GBG3wA8I+D1fQuVnAvcBF8f13akOKeQp1gSbu6f77zCxhEk727iV5oQnbHLYzHrECLg==}
     dev: false
 
   /@trysound/sax@0.2.0:

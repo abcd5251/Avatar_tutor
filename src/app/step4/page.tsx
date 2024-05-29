@@ -2,28 +2,15 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BackendAPI, uploadToIPFS } from '../utils/backend';
-import { formatAddress } from '@mysten/sui.js/utils';
-import { ConnectButton, useWalletKit } from '@mysten/wallet-kit';
-import { WalletKitProvider } from '@mysten/wallet-kit';
-import { TransactionBlock } from '@mysten/sui.js/transactions';
+import { WalletProvider } from "@suiet/wallet-kit";
+import { ConnectButton } from '@suiet/wallet-kit';
+import "@suiet/wallet-kit/style.css";
 
 const sleep = (milliseconds: number): Promise<void> => {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   };
 
-function ConnectToWallet() {
-  const { currentAccount } = useWalletKit();
-  console.log(currentAccount);
 
-  // Check if currentAccount exists before accessing its properties
-  const connectedText = currentAccount ? `Connected: ${formatAddress(currentAccount.address)}` : 'Connect Wallet';
-  return (
-    <ConnectButton
-      connectText={'Connect Wallet'}
-      connectedText={connectedText}
-    />
-  );
-}
 
 const Step5: React.FC = () => {
 
@@ -95,7 +82,7 @@ const Step5: React.FC = () => {
 
   
 return (
-    <WalletKitProvider>
+    <WalletProvider>
       <html lang="en">
       <head>
           <meta charSet="UTF-8" />
@@ -120,7 +107,7 @@ return (
             <div className="w-1/4">
               <ul className="space-y-2">
                 <div>
-                  <ConnectToWallet />
+                  <ConnectButton />
                 </div>
                 <img src="/logo.png" alt="Logo" className="logo" />
                 <li>Step 1: Start</li>
@@ -176,7 +163,7 @@ return (
           </div>
         </body>
       </html>
-    </WalletKitProvider>
+    </WalletProvider>
     );
   };
   
