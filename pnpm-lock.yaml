@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@mysten/dapp-kit':
     specifier: ^0.13.2
-    version: 0.13.2(@tanstack/react-query@5.39.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(svelte@4.2.17)(typescript@5.4.5)
+    version: 0.13.2(@tanstack/react-query@5.40.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(svelte@4.2.17)(typescript@5.4.5)
   '@mysten/sui.js':
     specifier: ^0.54.1
     version: 0.54.1(svelte@4.2.17)(typescript@5.4.5)
@@ -17,6 +17,9 @@ dependencies:
   '@suiet/wallet-kit':
     specifier: ^0.2.24
     version: 0.2.24(@mysten/sui.js@0.54.1)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(svelte@4.2.17)(typescript@5.4.5)
+  '@tanstack/react-query':
+    specifier: ^5.40.0
+    version: 5.40.0(react@18.3.1)
   axios:
     specifier: ^1.7.2
     version: 1.7.2
@@ -1570,7 +1573,7 @@ packages:
       bs58: 5.0.0
     dev: false
 
-  /@mysten/dapp-kit@0.13.2(@tanstack/react-query@5.39.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(svelte@4.2.17)(typescript@5.4.5):
+  /@mysten/dapp-kit@0.13.2(@tanstack/react-query@5.40.0)(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(svelte@4.2.17)(typescript@5.4.5):
     resolution: {integrity: sha512-YO4DTKwF0CiUjiB4As3tnHHbD30/9ZNIe1nXScXCl8KJEe0A0uuoLlTP9y6xVn84VftJGek7WmsIeuEq6wFZ0w==}
     peerDependencies:
       '@tanstack/react-query': ^5.0.0
@@ -1582,7 +1585,7 @@ packages:
       '@radix-ui/react-dialog': 1.0.5(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
       '@radix-ui/react-dropdown-menu': 2.0.6(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
       '@radix-ui/react-slot': 1.0.2(@types/react@18.3.3)(react@18.3.1)
-      '@tanstack/react-query': 5.39.0(react@18.3.1)
+      '@tanstack/react-query': 5.40.0(react@18.3.1)
       '@vanilla-extract/css': 1.15.2
       '@vanilla-extract/dynamic': 2.1.1
       '@vanilla-extract/recipes': 0.5.3(@vanilla-extract/css@1.15.2)
@@ -2603,16 +2606,16 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@tanstack/query-core@5.38.0:
-    resolution: {integrity: sha512-QtkoxvFcu52mNpp3+qOo9H265m3rt83Dgbw5WnNyJvr83cegrQ7zT8haHhL4Rul6ZQkeovxyWbXVW9zI0WYx6g==}
+  /@tanstack/query-core@5.40.0:
+    resolution: {integrity: sha512-eD8K8jsOIq0Z5u/QbvOmfvKKE/XC39jA7yv4hgpl/1SRiU+J8QCIwgM/mEHuunQsL87dcvnHqSVLmf9pD4CiaA==}
     dev: false
 
-  /@tanstack/react-query@5.39.0(react@18.3.1):
-    resolution: {integrity: sha512-zc0WnyEffyTgG+myLv8cY2tJOUT6jOprCiprpbMqylCaCFipSDUPCYCt2AC+qxgk2CFuqiI/fjb1u5/HhLkrPg==}
+  /@tanstack/react-query@5.40.0(react@18.3.1):
+    resolution: {integrity: sha512-iv/W0Axc4aXhFzkrByToE1JQqayxTPNotCoSCnarR/A1vDIHaoKpg7FTIfP3Ev2mbKn1yrxq0ZKYUdLEJxs6Tg==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-core': 5.38.0
+      '@tanstack/query-core': 5.40.0
       react: 18.3.1
     dev: false
 

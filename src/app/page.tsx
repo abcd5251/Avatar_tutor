@@ -61,14 +61,16 @@ const App: React.FC = () => {
                                 <img src="/logo.png" alt="Logo" className="logo" />
                                 <li className="bg-blue-500 text-white px-4 py-2 rounded-md">Step 1: Start</li>
                                 <li>Step 2: Avatar Image</li>
-                                <li>Step 3: Content</li>
-                                <li>Step 4: Audio</li>
-                                <li>Step 5: Preview</li>
+                                <li>Step 3: Audio</li>
+                                <li>Step 4: Preview</li>
                             </ul>
                         </div>
                         <div className="w-3/4 flex flex-col items-center container">
                             <h1 className="text-6xl font-bold mb-8">Campaign theme: "Zero Knowledge"</h1>
                             <h3 className="text-2xl mb-8">Let's create an engaging Talking Avatar video of it</h3>
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-8 mt-8" onClick={handleStartClick}>
+                                Start
+                            </button>
                             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-8 mt-8" onClick={handleStartClick}>
                                 Start
                             </button>

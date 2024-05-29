@@ -30,6 +30,23 @@ export const handleOra = async () => {
 
 }
 
+export async function uploadToIPFS(username: string): Promise<string> {
+  try {
+
+    const response = await axios.get('http://172.21.10.105:7760/upload_ipfs?username=aaa', {
+      params: {
+        username: username
+      }
+    });
+
+    return response.data;
+  } catch (error) {
+    
+    console.error("Error uploading to IPFS:", error);
+    throw error; 
+  }
+}
+
 const handleImage = (response: AxiosResponse) => {
     let image = btoa(
       new Uint8Array(response.data)

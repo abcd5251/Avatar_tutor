@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { BackendAPI } from '../utils/backend';
+import { BackendAPI, uploadToIPFS } from '../utils/backend';
 import { formatAddress } from '@mysten/sui.js/utils';
 import { ConnectButton, useWalletKit } from '@mysten/wallet-kit';
 import { WalletKitProvider } from '@mysten/wallet-kit';
@@ -31,7 +31,15 @@ const Step5: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [videoUrl, setVideoUrl] = useState<string>("");
     const [finishGenerate, setFinishGenerated] = useState<boolean>(false);
+    const [twitterAccount, setTwitterAccount] = useState<string>("");
+    const [showMintButton, setShowMintButton] = useState<boolean>(false);
     const { signAndExecuteTransactionBlock } = useWalletKit();
+    
+    const handleTwitterAccountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const account = event.target.value;
+        setTwitterAccount(account);
+        setShowMintButton(account !== "");
+    };
 
     const handleStartClick = () => {
       router.push('/step2');
@@ -42,18 +50,31 @@ const Step5: React.FC = () => {
     };
     
     const sendTransaction = async () => {
+        
+
+        let url_nft = "";
+        try {
+          const respond = await uploadToIPFS('test');
+          url_nft = await respond;
+        } catch (error) {
+          console.error('Error：', error);
+        }
+        console.log("Result", url_nft)
+        console.log("start send transaction")
         const tx = new TransactionBlock();
+        const NFT_address = "0xb56e1e0d840dadb7e7f45d6f8e638ac6bc9f9dfc2e0bc2d4171cfcdd72eadd00";
         tx.moveCall({
-          target: '0x2::devnet_nft::mint',
+          target: `${NFT_address}::avatar::mint`,
           arguments: [
-            tx.pure.string('some name'),
-            tx.pure.string('some description'),
+            tx.pure.string('testing'),
+            tx.pure.string('testing 2'),
             tx.pure.string(
-              'https://cdn.britannica.com/94/194294-138-B2CF7780/overview-capybara.jpg?w=800&h=450&c=crop',
+              url_nft,
             ),
           ],
         });
-        await signAndExecuteTransactionBlock({ transactionBlock: tx });
+        const result = await signAndExecuteTransactionBlock({ transactionBlock: tx });
+        console.log(result)
       };
 
     const handleStartGenerated = async () => {
@@ -113,12 +134,21 @@ return (
               {!!videoUrl && <video controls src={videoUrl} className="mb-4" width="480" height="360"/>}
               {!loading && finishGenerate ? (
                 <div className="flex justify-center gap-4">
-                  <button
-                    className="bg-blue-600 text-white font-semibold py-2 px-6 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                    onClick={sendTransaction}
-                  >
-                    Mint NFT
-                  </button>
+                  <input
+                    type="text"
+                    placeholder="Enter Twitter Account"
+                    className="border-2 border-gray-400 rounded px-4 py-2 mb-4"
+                    value={twitterAccount}
+                    onChange={handleTwitterAccountChange}
+                    />
+                    {showMintButton && (
+                        <button
+                            className="bg-blue-600 text-white font-semibold py-2 px-6 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            onClick={sendTransaction}
+                        >
+                            Mint NFT
+                        </button>
+                    )}
                   <button
                     className="bg-blue-600 text-white font-semibold py-2 px-6 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     onClick={handleSaveClick}
@@ -150,5 +180,5 @@ return (
     );
   };
   
-  export default Step5;
+export default Step5;
   
