@@ -1,58 +1,86 @@
 module contract::avatar {
-    use std::string::String;
+    use sui::url::{Self, Url};
+    use std::string;
+    use sui::object::{Self, ID, UID};
     use sui::event;
-    use sui::object::{Self, UID};
-    use sui::transfer::{Self};
-    use sui::tx_context::{Self,TxContext};
-    use std::option;
-    use sui::url::{Self};
+    use sui::transfer;
+    use sui::tx_context::{Self, TxContext};
 
-    public struct Avatar has key, store {
+    public struct AvatarNFT has key, store {
         id: UID,
-        // Category of task
-        name: String,
-        // Description of avatar
-        description: String,
-        // URL to the avatar image
-        url: String,
+        /// Name for the NFT
+        name: string::String,
+        /// Description of the NFT
+        description: string::String,
+        /// Create time of the token
+        createtime : string::String,
+        
+        url: Url,
+        
     }
 
-    /// Event: emitted when a new Avatar is minted.
-    public struct AvatarMinted has copy, drop {
-        /// ID of the Avatar
-        avatar_id: ID,
-        /// The address of the NFT minter
-        minted_by: address,
+    // ===== Events =====
+
+    public struct NFTMinted has copy, drop {
+        // The Object ID of the NFT
+        object_id: ID,
+        // The creator of the NFT
+        creator: address,
+        // The name of the NFT
+        name: string::String,
     }
 
-    public fun mint(
-        name: String,
-        description: String,
-        url: String,
+
+    /// Get the NFT's `name`
+    public fun name(nft: &AvatarNFT): &string::String {
+        &nft.name
+    }
+
+    /// Get the NFT's `description`
+    public fun createtime(nft: &AvatarNFT): &string::String {
+        &nft.createtime
+    }
+
+    /// Get the NFT's `description`
+    public fun description(nft: &AvatarNFT): &string::String {
+        &nft.description
+    }
+
+    /// Get the NFT's `url`
+    public fun url(nft: &AvatarNFT): &Url {
+        &nft.url
+    }
+
+
+    public entry fun mint_to_sender(
+        name: vector<u8>,
+        description: vector<u8>,
+        createtime: vector<u8>,
+        url: vector<u8>,
         ctx: &mut TxContext
-    ): Avatar {
-        let id = object::new(ctx);
+    ) {
+        let sender = tx_context::sender(ctx);
+        let nft = AvatarNFT {
+            id: object::new(ctx),
+            name: string::utf8(name),
+            description: string::utf8(description),
+            createtime: string::utf8(createtime),
+            url: url::new_unsafe_from_bytes(url)
+        };
 
-        event::emit(AvatarMinted {
-            avatar_id: id.to_inner(),
-            minted_by: ctx.sender(),
+        event::emit(NFTMinted {
+            object_id: object::id(&nft),
+            creator: sender,
+            name: nft.name,
         });
 
-        Avatar { id, name, description, url }
-    }
-
-    // Destroy the Avatar
-    public fun destroy(avatar: Avatar) {
-        let Avatar { id, name: _, description: _, url: _ } = avatar;
-        id.delete()
+        transfer::public_transfer(nft, sender);
     }
 
 
-    /// Get the Avatar's `name`
-    public fun name(avatar: &Avatar): String { avatar.name }
-
-    public fun description(avatar: &Avatar): String { avatar.description }
-
-    public fun url(avatar: &Avatar): String { avatar.url }
+    /// Permanently delete `nft`
+    public fun burn(nft: AvatarNFT, _: &mut TxContext) {
+        let AvatarNFT { id, name: _, description: _, createtime: _, url: _ } = nft;
+        object::delete(id)
+    }
 }
-
