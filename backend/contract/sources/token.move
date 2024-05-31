@@ -19,7 +19,7 @@ module contract::mycoin {
         let symbol = b"AVATAR";
         let name = b"Avatar coin";
         let description = b"AI Avatar reward";
-        let icon_url = url::new_unsafe_from_bytes(b"https://pin.ski/3PKHM4G");
+        let icon_url = url::new_unsafe_from_bytes(b"https://purple-improved-woodpecker-816.mypinata.cloud/ipfs/QmYWNUA5GYRM1T5nJw92k6GTmQ7ewbDN95o11w6TNRF8AW");
 
         let (treasury, metadata) = coin::create_currency(otw, decimals, symbol, name, description, option::some(icon_url), ctx);
         transfer::public_freeze_object(metadata);

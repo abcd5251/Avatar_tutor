@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 import { useWallet } from '@suiet/wallet-kit';
 import { WalletProvider, ConnectButton } from "@suiet/wallet-kit";
 import "@suiet/wallet-kit/style.css";
@@ -34,7 +35,13 @@ function Page() {
         setLoading(false);
 
         if (tweet === "allen") {
-            setMessage("Meet requirements");
+            try {
+                console.log("address", address)
+                const response = await axios.post('/api/claim', { address });
+                setMessage(`Meet requirements: ${response.data.message}`);
+            } catch (error) {
+                setMessage("You didn't reach the requirements");
+            }
         } else {
             setMessage("You didn't reach the requirements");
         }
