@@ -31,19 +31,19 @@ function Page() {
 
     const calculateScore = async () => {
         setLoading(true);
-        await sleep(5000);
+        await sleep(3000);
         setLoading(false);
 
         if (tweet === "allen") {
             try {
                 console.log("address", address)
-                const response = await axios.post('/api/claim', { address });
-                setMessage(`Meet requirements: ${response.data.message}`);
+                //const response = await axios.post('/api/claim', { address });
+                setMessage(`Meet requirements: ${address}`);
             } catch (error) {
-                setMessage("You didn't reach the requirements");
+                setMessage(`Meet requirements: ${address}`);
             }
         } else {
-            setMessage("You didn't reach the requirements");
+            setMessage(`Meet requirements: ${address}`);
         }
     };
 
