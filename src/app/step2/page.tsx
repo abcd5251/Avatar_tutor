@@ -22,6 +22,10 @@ const Step2: React.FC = () => {
   const router = useRouter();
 
   const handleStartClick = async () => {
+    if (!selectedFile) {
+      console.error('No file selected');
+      return;
+    }
     try {
       setLoading(true);
       
