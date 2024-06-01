@@ -32,20 +32,20 @@ function Page() {
 
     const calculateScore = async () => {
         setLoading(true);
-        await sleep(3000);
-        setLoading(false);
 
         if (tweet === "allen") {
             try {
                 console.log("address", address)
-                //const response = await axios.post('/api/claim', { address });
-                setMessage(`Meet requirements: ${address}`);
+                const response = await axios.post('http://127.0.0.1:8005/claim', { address });
+                console.log(response.data);
+                setMessage(`Meet requirements, reward has sent to your address : ${address}`);
             } catch (error) {
-                setMessage(`Meet requirements: ${address}`);
+                setMessage(`Sorry, you didn't meet the requirements!`);
             }
         } else {
-            setMessage(`Meet requirements: ${address}`);
+            setMessage(`Sorry, you didn't meet the requirements!`);
         }
+        setLoading(false);
     };
 
     const handleTweetChange = (event: React.ChangeEvent<HTMLInputElement>) => {
