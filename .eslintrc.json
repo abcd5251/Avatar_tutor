@@ -1,6 +1,7 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "@next/next/no-sync-scripts": "error"
+    "@next/next/no-sync-scripts": "error",
+    "react/no-unescaped-entities": "off"
   }
 }
