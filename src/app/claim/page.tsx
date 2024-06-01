@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import Script from 'next/script'
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useWallet } from '@suiet/wallet-kit';
@@ -64,7 +65,7 @@ function Page() {
                     <meta charSet="UTF-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                     <title>Claim Reward</title>
-                    <script src="https://cdn.tailwindcss.com"></script>
+                    <Script src="https://cdn.tailwindcss.com"></Script>
                     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
                     <style>{`
                         body {

@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import Script from 'next/script'
 import { useRouter } from 'next/navigation';
 import { BackendAPI } from '../utils/backend';
 import { WalletProvider } from "@suiet/wallet-kit";
@@ -68,7 +69,7 @@ const Step2: React.FC = () => {
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>Please upload your image</title>
-          <script src="https://cdn.tailwindcss.com"></script>
+          <Script src="https://cdn.tailwindcss.com"></Script>
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
           <style>{`
             body {

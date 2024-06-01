@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { WalletProvider } from "@suiet/wallet-kit";
 import {ConnectButton} from '@suiet/wallet-kit';
 import "@suiet/wallet-kit/style.css";
+import Script from 'next/script'
 
 
 const App: React.FC = () => {
@@ -24,7 +25,7 @@ const App: React.FC = () => {
                     <meta charSet="UTF-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                     <title></title>
-                    <script src="https://cdn.tailwindcss.com"></script>
+                    <Script src="https://cdn.tailwindcss.com"></Script>
                     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
                     <style>{`
                         body {
@@ -57,7 +58,7 @@ const App: React.FC = () => {
                             </ul>
                         </div>
                         <div className="w-3/4 flex flex-col items-center container">
-                            <h1 className="text-6xl font-bold mb-8">Campaign theme: "Zero Knowledge"</h1>
+                            <h1 className="text-4xl font-bold mb-8">Campaign theme: "Zero Knowledge"</h1>
                             <h3 className="text-2xl mb-8">Let's create an engaging Talking Avatar video of it</h3>
                             <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-8 mt-8" onClick={handleStartClick}>
                                 Start
