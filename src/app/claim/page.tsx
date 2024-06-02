@@ -32,8 +32,11 @@ function Page() {
 
     const calculateScore = async () => {
         setLoading(true);
-
-        if (tweet === "allen") {
+        
+        // for demo 
+        // const requirement = await axios.post('http://127.0.0.1:8005/check', { tweet });
+        
+        if (tweet.includes("allen")) {
             try {
                 console.log("address", address)
                 const response = await axios.post('http://127.0.0.1:8005/claim', { address });
